@@ -1,4 +1,4 @@
-import { EXTERNAL_URL } from "../const";
+import { EXTERNAL_URL } from '../const';
 
 export default function HomepageIntroduction() {
   return (
