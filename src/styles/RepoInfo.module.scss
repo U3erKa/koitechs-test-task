@@ -1,0 +1,17 @@
+@import '../styles/_common.scss';
+
+.container {
+  @extend %container;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+
+  @media (width < 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}

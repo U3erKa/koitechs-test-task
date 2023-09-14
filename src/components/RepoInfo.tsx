@@ -1,5 +1,6 @@
 import { LOCALE } from '../const';
 import { Repos } from '../types';
+import styles from '../styles/RepoInfo.module.scss';
 
 type Props = Pick<
   Repos[number],
@@ -16,15 +17,17 @@ export default function RepoInfo({
   const pushedAt = new Date(pushed_at as string);
 
   return (
-    <section>
-      <p>
-        <a href={html_url} target="_blank">
-          {name}
-        </a>
-      </p>
-      {pushed_at && (
-        <p>Last activity at {pushedAt.toLocaleDateString(LOCALE)}</p>
-      )}
+    <section className={styles.container}>
+      <section className={styles.heading}>
+        <h2>
+          <a href={html_url} target="_blank">
+            {name}
+          </a>
+        </h2>
+        {pushed_at && (
+          <p>Last activity at {pushedAt.toLocaleDateString(LOCALE)}</p>
+        )}
+      </section>
       {description && <p>{description}</p>}
       {language && <p>Primary language: {language}</p>}
     </section>
