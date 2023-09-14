@@ -8,3 +8,10 @@ $colorDarkBlue3: #213547;
 $colorDarkBlue2: #242424;
 $colorDarkBlue1: #1a1a1a;
 $colorBlack: #000000;
+
+%container {
+  background: $colorDarkBlue1;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 0;
+}

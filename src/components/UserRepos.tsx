@@ -4,6 +4,7 @@ import { getUserRepos } from '../api';
 import { truncateNumber, uniqueId } from '../functions';
 import { INITIALLY_LOADED_REPOS, MAX_REPOS_PER_REQUEST } from '../const';
 import type { Repos } from '../types';
+import styles from '../styles/UserRepos.module.scss';
 
 type Props = { username: string; public_repos: number; repos: Repos };
 
@@ -59,17 +60,17 @@ export default function UserRepos({ username, public_repos, repos }: Props) {
   const languageStats = Object.entries(languages)
     .sort(([, count], [, other]) => other - count)
     .map(([language, count]) => {
-    const languagePercentage = (count * 100) / languageCount;
-    return (
-      <p key={uniqueId()}>
-        {language}: {truncateNumber(languagePercentage)}%
-      </p>
-    );
-  });
+      const languagePercentage = (count * 100) / languageCount;
+      return (
+        <p key={uniqueId()}>
+          {language}: {truncateNumber(languagePercentage)}%
+        </p>
+      );
+    });
 
   return (
     <article>
-      <section>{languageStats}</section>
+      <section className={styles.container}>{languageStats}</section>
       <section>
         {recentRepos.length ? (
           recentRepos

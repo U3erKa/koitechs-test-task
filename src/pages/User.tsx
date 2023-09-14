@@ -12,8 +12,10 @@ export default function User() {
   return (
     <main className={styles.container}>
       <h1>{name ?? login}</h1>
-      <p>Has {public_repos} public repositories</p>
-      <p>Member since {memberSince.toLocaleDateString(LOCALE)}</p>
+      <article className={styles.briefInfo}>
+        <p>Has {public_repos} public repositories</p>
+        <p>Member since {memberSince.toLocaleDateString(LOCALE)}</p>
+      </article>
       <UserRepos username={login} public_repos={public_repos} repos={repos} />
     </main>
   );

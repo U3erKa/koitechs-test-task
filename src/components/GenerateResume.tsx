@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/GenerateResume.module.scss'
+import styles from '../styles/GenerateResume.module.scss';
 
 export default function GenerateResume() {
   const [username, setUsername] = useState('');
@@ -18,7 +18,7 @@ export default function GenerateResume() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-      className={styles.input}
+        className={styles.input}
         type="text"
         placeholder={
           'Enter your GitHub username and then click "Generate" button or press "Enter"'
