@@ -14,4 +14,8 @@ $colorBlack: #000000;
   border-radius: 8px;
   padding: 8px;
   margin: 8px 0;
+
+  @media (prefers-color-scheme: light) {
+    background: $colorLightGray;
+  }
 }
