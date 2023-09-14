@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getUserRepos } from '../api';
 import { truncateNumber, uniqueId } from '../functions';
-import { INITIALLY_LOADED_REPOS, MAX_REPOS_PER_REQUEST } from '../const';
+import {
+  INITIALLY_LOADED_REPOS,
+  MAX_REPOS_PER_REQUEST,
+  LOCALE,
+} from '../const';
 import type { Repos } from '../types';
 
 type Props = { username: string; public_repos: number; repos: Repos };
@@ -31,16 +35,38 @@ export default function UserRepos({ username, public_repos, repos }: Props) {
     }
   }, [public_repos, username]);
 
-  allRepos.forEach(({ language }) => {
-    if (language) {
-      if (language in languages) {
-        languages[language]++;
-      } else {
-        languages[language] = 1;
+  const recentRepos: JSX.Element[] = [];
+
+  allRepos.forEach(
+    ({ id, name, description, pushed_at, html_url, language }, i) => {
+      if (language) {
+        if (language in languages) {
+          languages[language]++;
+        } else {
+          languages[language] = 1;
+        }
+        languageCount++;
       }
-      languageCount++;
-    }
-  });
+
+      if (i < INITIALLY_LOADED_REPOS) {
+        recentRepos.push(
+          <section key={id}>
+            <p>
+              <a href={html_url}>{name}</a>
+            </p>
+            {pushed_at && (
+              <p>
+                Last activity at{' '}
+                {new Date(pushed_at).toLocaleDateString(LOCALE)}
+              </p>
+            )}
+            {description && <p>{description}</p>}
+            {language && <p>Primary language: {language}</p>}
+          </section>,
+        );
+      }
+    },
+  );
 
   const languageStats = Object.entries(languages).map(([language, count]) => {
     const languagePercentage = (count * 100) / languageCount;
@@ -54,6 +80,13 @@ export default function UserRepos({ username, public_repos, repos }: Props) {
   return (
     <article>
       <section>{languageStats}</section>
+      <section>
+        {recentRepos.length ? (
+          recentRepos
+        ) : (
+          <p>This user doesn't seem to have any repositories, yet</p>
+        )}
+      </section>
     </article>
   );
 }
