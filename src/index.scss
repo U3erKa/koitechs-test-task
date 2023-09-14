@@ -21,6 +21,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: $colorBlack;
+  border-radius: 16px;
 }
 
 a {
@@ -53,7 +55,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: $colorDarkBlue1;
   cursor: pointer;
   transition: border-color 0.25s;
 
@@ -70,6 +72,9 @@ button {
 @media (prefers-color-scheme: light) {
   :root {
     color: $colorDarkBlue3;
+    background-color: $colorGray;
+  }
+  #root {
     background-color: $colorWhite;
   }
   a:hover {
