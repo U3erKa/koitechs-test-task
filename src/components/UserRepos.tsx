@@ -56,7 +56,9 @@ export default function UserRepos({ username, public_repos, repos }: Props) {
     },
   );
 
-  const languageStats = Object.entries(languages).map(([language, count]) => {
+  const languageStats = Object.entries(languages)
+    .sort(([, count], [, other]) => other - count)
+    .map(([language, count]) => {
     const languagePercentage = (count * 100) / languageCount;
     return (
       <p key={uniqueId()}>
