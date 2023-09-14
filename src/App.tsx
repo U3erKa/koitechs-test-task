@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Home, User } from './pages';
 import { getUserData, getUserRepos } from './api';
-import { ROUTES } from './const';
+import { ROUTES, INITIALLY_LOADED_REPOS } from './const';
 import './App.scss';
 
 const router = createBrowserRouter([
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     async loader({ params }) {
       const [user, repos] = await Promise.all([
         getUserData(params.username!),
-        getUserRepos(params.username!, undefined, Number.MAX_SAFE_INTEGER),
+        getUserRepos(params.username!, undefined, INITIALLY_LOADED_REPOS),
       ]);
       return [user.data, repos.data];
     },
