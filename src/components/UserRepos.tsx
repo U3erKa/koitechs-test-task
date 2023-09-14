@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
+import { RepoInfo } from '../components';
 import { getUserRepos } from '../api';
 import { truncateNumber, uniqueId } from '../functions';
-import {
-  INITIALLY_LOADED_REPOS,
-  MAX_REPOS_PER_REQUEST,
-  LOCALE,
-} from '../const';
+import { INITIALLY_LOADED_REPOS, MAX_REPOS_PER_REQUEST } from '../const';
 import type { Repos } from '../types';
 
 type Props = { username: string; public_repos: number; repos: Repos };
@@ -50,19 +47,10 @@ export default function UserRepos({ username, public_repos, repos }: Props) {
 
       if (i < INITIALLY_LOADED_REPOS) {
         recentRepos.push(
-          <section key={id}>
-            <p>
-              <a href={html_url}>{name}</a>
-            </p>
-            {pushed_at && (
-              <p>
-                Last activity at{' '}
-                {new Date(pushed_at).toLocaleDateString(LOCALE)}
-              </p>
-            )}
-            {description && <p>{description}</p>}
-            {language && <p>Primary language: {language}</p>}
-          </section>,
+          <RepoInfo
+            key={id}
+            {...{ html_url, name, pushed_at, description, language }}
+          />,
         );
       }
     },
