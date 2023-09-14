@@ -7,5 +7,10 @@ export async function getUserData(username: string) {
 }
 
 export async function getUserRepos(username: string, page = 1, per_page = 30) {
-  return await octokit.rest.repos.listForUser({ username, page, per_page });
+  return await octokit.rest.repos.listForUser({
+    username,
+    page,
+    per_page,
+    sort: 'pushed',
+  });
 }
