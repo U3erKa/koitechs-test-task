@@ -1,0 +1,8 @@
+.container {
+  margin: 0 auto;
+  width: fit-content;
+
+  & p {
+    text-align: justify;
+  }
+}

@@ -18,7 +18,9 @@ export default function RepoInfo({
   return (
     <section>
       <p>
-        <a href={html_url}>{name}</a>
+        <a href={html_url} target="_blank">
+          {name}
+        </a>
       </p>
       {pushed_at && (
         <p>Last activity at {pushedAt.toLocaleDateString(LOCALE)}</p>
