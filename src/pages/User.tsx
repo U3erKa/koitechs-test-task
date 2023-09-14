@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
+import { UserRepos } from '../components';
 import type { User, Repos } from '../types';
 
 export default function User() {
@@ -11,6 +12,7 @@ export default function User() {
       <h1>{name ?? login}</h1>
       <p>Has {public_repos} public repositories</p>
       <p>Member since {memberSince.toLocaleDateString('uk-UA')}</p>
+      <UserRepos username={login} public_repos={public_repos} repos={repos} />
     </main>
   );
 }
