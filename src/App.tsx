@@ -2,7 +2,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Home, User, UserNotFound } from './pages';
 import { getUserData, getUserRepos } from './api';
 import { ROUTES, INITIALLY_LOADED_REPOS } from './const';
-import './App.scss';
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME, element: <Home /> },
